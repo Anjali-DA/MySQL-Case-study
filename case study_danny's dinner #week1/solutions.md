@@ -23,7 +23,9 @@ Q2. How many days has each customer visited the restaurant?
 Q3. What was the first item from the menu purchased by each customers?
 
 **Ans** : •Use **dense_rank()**, **group by**, **order by** and **with clause**.
+
           •**row_number**- row number is a function that assigns a sequential integer to each row within the partition. 
+          
           •Instead of **row_number**, we will use dense_rank
 
 | customer_id      | product_name  | 
@@ -47,6 +49,7 @@ Q5. Which item was the most popular for each customer?
 
 **Ans:**
 •Use **with clause** for creating a sub &
+
 •Other functions- **join**, **group by** & **order by**
 
 | customer_id    | product_name  |order_count|
