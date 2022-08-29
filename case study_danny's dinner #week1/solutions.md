@@ -140,13 +140,13 @@ Q2. Rank All The Things - Danny also requires further information about the rank
 **Ans**- Use dense_rank, with clause, case-when, left join, & order by to solve the query
 
 |customer_id|order_date|price|product_name|members|ranking|
-| ----------|:--------:|:---:|:----------:|:-----:|null   |
+| ----------|:--------:|:---:|:----------:|:-----:|:-----:|
 |A          |2021-01-01|10   |sushi       |N      |null   |
-|A          |2021-01-01|10   |sushi       |N      |1      |
-|A          |2021-01-01|15   |curry       |N      |2      |
-|A          |2021-01-01|15   |curry       |Y      |3      |
+|A          |2021-01-01|10   |sushi       |N      |null   |
+|A          |2021-01-01|15   |curry       |N      |1      |
+|A          |2021-01-01|15   |curry       |Y      |2      |
 |A          |2021-01-10|12   |ramen       |Y      |3      |
-|A          |2021-01-11|12   |ramen       |Y      |null   |
+|A          |2021-01-11|12   |ramen       |Y      |3      |
 |A          |2021-01-11|12   |ramen       |Y      |null   |
 |B          |2021-01-01|15   |curry       |N      |null   |
 |B          |2021-01-02|15   |curry       |N      |null   |
