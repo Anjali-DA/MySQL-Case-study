@@ -1,5 +1,6 @@
 # Data cleaning
 
+```
 create table pizza_runner.runner_orders_temp as
 select order_id, runner_id,
 case
@@ -23,3 +24,4 @@ when cancellation like 'null' or cancellation like 'NaN' then null
 else cancellation
 end as cancellation
 from pizza_runner.runner_orders;
+```
