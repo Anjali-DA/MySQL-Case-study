@@ -1,4 +1,4 @@
-# Data cleaning
+# 🍕Data cleaning
 
 **🔖Cleaning Table-2: customer_orders**
 
@@ -23,8 +23,8 @@ select* from pizza_runner.customer_order_temp;
 **🔖Cleaning Table-3: Runner_orders**
 
 - Removing null or NaN with blank space ' ' from pickup_time, distance, duration and cancellation
-- Removing **km** from distance by using <span style="color:blue">TRIM</span> function
-- Removing **mins**, **minutes** & **minute** from duration by using <span style="color:blue">TRIM</span> function
+- Removing **km** from distance by using TRIM function
+- Removing **mins**, **minutes** & **minute** from duration by using TRIM function
 ```
 create table pizza_runner.runner_orders_temp as
 select order_id, runner_id,
