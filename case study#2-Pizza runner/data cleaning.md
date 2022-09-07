@@ -1,6 +1,6 @@
 # 🍕Data cleaning
 
-**🔖Cleaning Table-2: customer_orders**
+## 🔖Cleaning Table-2: customer_orders
 
 - Removing null or NaN with blank space ' ' from exclusions & extras
 
@@ -23,7 +23,7 @@ select* from pizza_runner.customer_order_temp;
 ![table1](https://user-images.githubusercontent.com/98269318/188915649-2168c602-4fb7-490e-b00e-725b43cafd9d.png)
 
 
-**🔖Cleaning Table-3: Runner_orders**
+## 🔖Cleaning Table-3: Runner_orders**
 
 - Removing null or NaN with blank space ' ' from pickup_time, distance, duration and cancellation
 - Removing **km** from distance by using TRIM function
@@ -56,3 +56,4 @@ from pizza_runner.runner_orders;
 
 select* from pizza_runner.runner_orders_temp;
 ```
+![Table2](https://user-images.githubusercontent.com/98269318/188916239-d9ed98f7-569d-4c24-9446-e01e36d3d583.png)
