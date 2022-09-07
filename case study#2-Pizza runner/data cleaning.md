@@ -20,6 +20,9 @@ from pizza_runner.customer_orders;
 
 select* from pizza_runner.customer_order_temp;
 ```
+![table1](https://user-images.githubusercontent.com/98269318/188915649-2168c602-4fb7-490e-b00e-725b43cafd9d.png)
+
+
 **🔖Cleaning Table-3: Runner_orders**
 
 - Removing null or NaN with blank space ' ' from pickup_time, distance, duration and cancellation
