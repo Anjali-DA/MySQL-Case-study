@@ -19,8 +19,8 @@ from pizza_runner.customer_order_temp;
 **Ans**: There were 10 unique customer orders made.
 
 **🍕3. How many successful orders were delivered by each runner?**
-```
-select runner_id,count(order_id) as successful_orders
+``` SQL
+  select runner_id,count(order_id) as successful_orders
   from pizza_runner.runner_orders_temp
   where duration !=0
   group by runner_id;
@@ -31,3 +31,17 @@ select runner_id,count(order_id) as successful_orders
 - **Runner Id: 1**, made 4 successful orders
 - **Runner Id: 2**, made 3 successful orders
 - **Runner Id: 3**, made 1 successful orders 
+
+**🍕4.How many of each type of pizza was delivered?**
+```select p.pizza_name, count(c.pizza_id) as types_of_pizza
+  from pizza_runner.customer_order_temp as c
+  join pizza_runner.pizza_names as p
+  on c.pizza_id= p.pizza_id
+  join pizza_runner.runner_orders as r
+  on c.order_id=r.order_id
+  where duration !=0
+  group by p.pizza_name;
+  ```
+  ![q4](https://user-images.githubusercontent.com/98269318/189192510-ed29979b-b06d-4b34-b9a0-a02803d48586.png)
+
+**Ans**: 
