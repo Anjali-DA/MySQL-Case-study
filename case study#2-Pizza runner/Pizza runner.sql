@@ -164,10 +164,12 @@ modify column duration int;
  
  #A. Pizza Metrics
  #1. How many pizzas were ordered?
- select count(pizza_id) as total_pizza_ordered  from pizza_runner.customer_order_temp; 
+ select count(pizza_id) as total_pizza_ordered  
+ from pizza_runner.customer_order_temp; 
  
  #2. How many unique customer orders were made?
-  select count(distinct(order_id)) as unique_customer_id  from pizza_runner.customer_order_temp; 
+  select count(distinct(order_id)) as unique_customer_id  
+  from pizza_runner.customer_order_temp; 
   
   #3. How many successful orders were delivered by each runner?
   select runner_id,count(order_id) as successful_orders
