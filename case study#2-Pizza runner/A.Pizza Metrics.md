@@ -1,7 +1,7 @@
 # 💡Case Study Questions- A.Pizza Metrics
 
 **🍕1. How many pizzas were ordered?**
-```
+``` SQL
 select count(pizza_id) as total_pizza_ordered  
 from pizza_runner.customer_order_temp; 
 ```
@@ -10,7 +10,7 @@ from pizza_runner.customer_order_temp;
 **Ans**: Total number of pizzas ordered - 14
 
 **🍕2. How many unique customer orders were made?**
-```
+``` SQL
  select count(distinct(order_id)) as unique_customer_id  
  from pizza_runner.customer_order_temp; 
  ```
@@ -33,7 +33,8 @@ from pizza_runner.customer_order_temp;
 - **Runner Id: 3**, made 1 successful orders 
 
 **🍕4.How many of each type of pizza was delivered?**
-```select p.pizza_name, count(c.pizza_id) as types_of_pizza
+``` SQL
+  select p.pizza_name, count(c.pizza_id) as types_of_pizza
   from pizza_runner.customer_order_temp as c
   join pizza_runner.pizza_names as p
   on c.pizza_id= p.pizza_id
@@ -44,4 +45,8 @@ from pizza_runner.customer_order_temp;
   ```
   ![q4](https://user-images.githubusercontent.com/98269318/189192510-ed29979b-b06d-4b34-b9a0-a02803d48586.png)
 
-**Ans**: 
+**Ans**: Type of pizzas delivered
+- There are **9** type of pizzas for non-veg lovers
+- There are **3** type of pizzas for vegeterian
+          
+
