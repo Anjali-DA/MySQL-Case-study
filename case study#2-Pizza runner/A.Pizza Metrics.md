@@ -45,8 +45,6 @@ from pizza_runner.customer_order_temp;
   ```
   ![q4](https://user-images.githubusercontent.com/98269318/189192510-ed29979b-b06d-4b34-b9a0-a02803d48586.png)
 
-**Ans**: Type of pizzas delivered
+**Ans**: Type of pizzas delivered:
 - There are **9** type of pizzas for non-veg lovers
 - There are **3** type of pizzas for vegeterian
-          
-
