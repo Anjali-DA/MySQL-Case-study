@@ -26,3 +26,25 @@
 - Customer A visted **4** days
 - Customer B visited **6** days
 - Customer C visited **2** days
+
+**🦋3. What was the first item from the menu purchased by each customer?**
+``` SQL
+with ordered_sales as(
+select customer_id, product_name, order_date,
+dense_rank() over(partition by sales.customer_id
+order by sales.order_date) as Ranks
+from dannys_dinner.sales as sales
+join dannys_dinner.menu as menu
+on sales.product_id= menu.product_id)
+
+select customer_id, product_name
+from ordered_sales
+where ranks=1
+group by customer_id, product_name;
+```
+![d3](https://user-images.githubusercontent.com/98269318/189202389-d3453a51-5f87-44a8-81ae-190c2e092ba5.png)
+
+**Ans**: First item from the menu purchased by each customer:
+- Customer A bought **Sushi & Curry**
+- Customer B bought **Curry**
+- Customer C bought **Ramen**
