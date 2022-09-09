@@ -252,3 +252,8 @@ group by day_of_week;
 select extract(week from ru.registration_date) as registration_week,  count(runner_id) as runner_signed_up
 from pizza_runner.runners as ru
 group by registration_week;
+
+#2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+select r.runner_id as each_runner, avg(extract(minute from r.pickup_time)) as avg_pickup_time
+from pizza_runner.runner_orders as r
+group by runner_id;
