@@ -4,7 +4,7 @@
 
 - Removing null or NaN with blank space ' ' from exclusions & extras
 
-```
+``` SQL
 create table pizza_runner.customer_order_temp as
 select order_id,customer_id,pizza_id,
 case
@@ -28,7 +28,7 @@ select* from pizza_runner.customer_order_temp;
 - Removing null or NaN with blank space ' ' from pickup_time, distance, duration and cancellation
 - Removing **km** from distance by using TRIM function
 - Removing **mins**, **minutes** & **minute** from duration by using TRIM function
-```
+``` SQL
 create table pizza_runner.runner_orders_temp as
 select order_id, runner_id,
 case
@@ -63,7 +63,7 @@ select* from pizza_runner.runner_orders_temp;
 - Converting string to datetime in column pickup_time
 - Converting string to decimal in column distance
 - Converting string to integer in column duration
-```
+``` SQL
 alter table pizza_runner.runner_orders_temp
 modify column pickup_time datetime,
 modify column distance decimal(5,1),
