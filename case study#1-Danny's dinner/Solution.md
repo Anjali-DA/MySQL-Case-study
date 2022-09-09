@@ -65,7 +65,7 @@ group by customer_id, product_name;
 - Curry was purchased **4** times
 - Sushi was purchased **3** times
 
-  **🦋5. Which item was the most popular for each customer?**
+**🦋5. Which item was the most popular for each customer?**
   ``` SQL
   with popular_food as(
   select count(menu.product_id) as order_count, sales.customer_id, menu.product_name,
@@ -204,7 +204,7 @@ group by customer_id;
 
 **Bonus Questions**
 
-**1. The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL.**
+**🦋1. The following questions are related creating basic data tables that Danny and his team can use to quickly derive insights without needing to join the underlying tables using SQL.**
 ``` SQL 
 select sales.customer_id, sales.order_date, menu.price,menu.product_name,
 case 
@@ -233,3 +233,42 @@ on sales.customer_id= members.customer_id;
 |C          |2021-01-10|12   |ramen       |N      |
 |C          |2021-01-10|12   |ramen       |N      |
 |C          |2021-01-10|12   |ramen       |N      |
+
+**🦋2.Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.**
+``` SQL
+with ranking_values as(
+select sales.customer_id, sales.order_date, menu.price,menu.product_name,
+case 
+when members.join_date<=sales.order_date then 'Y'
+else 'N'
+end as members
+from dannys_dinner.sales as sales
+left join dannys_dinner.menu as menu
+on sales.product_id=menu.product_id
+left join dannys_dinner.members as members
+on sales.customer_id= members.customer_id
+)
+select*,
+case 
+when members= 'N' then 'Null'
+else dense_rank() over(partition by sales.customer_id, members
+order by sales.order_Date) end as Ranking
+from ranking_values;
+```
+
+|customer_id|order_date|price|product_name|members|ranking|
+|----------:|---------:|----:|-----------:|------:|Null   |
+|A          |2021-01-10|12   |sushi       |N      |Null   |
+|A          |2021-01-10|12   |curry       |N      |1      |
+|A          |2021-01-10|12   |curry       |Y      |2      |
+|A          |2021-01-10|12   |ramen       |Y      |3      |
+|A          |2021-01-10|12   |ramen       |Y      |3      |
+|B          |2021-01-10|12   |curry       |N      |Null   |
+|B          |2021-01-10|12   |curry       |N      |Null   |
+|B          |2021-01-10|12   |sushi       |N      |Null   |
+|B          |2021-01-10|12   |sushi       |Y      |1      | 
+|B          |2021-01-10|12   |ramen       |Y      |2      |
+|B          |2021-01-10|12   |ramen       |Y      |3      |
+|C          |2021-01-10|12   |ramen       |N      |Null   |
+|C          |2021-01-10|12   |ramen       |N      |Null   |
+|C          |2021-01-10|12   |ramen       |N      |Null   |
