@@ -48,3 +48,21 @@ group by customer_id, product_name;
 - Customer A bought **Sushi & Curry**
 - Customer B bought **Curry**
 - Customer C bought **Ramen**
+
+**🦋4. What is the most purchased item on the menu and how many times was it purchased by all customers?**
+``` SQL
+  select  (count(sales.customer_id)) as most_purchased, product_name
+  from dannys_dinner.sales as sales
+  join dannys_dinner.menu as menu
+  on sales.product_id= menu.product_id
+  group by sales.product_id, menu.product_name
+  order by most_purchased desc;
+  ```
+  ![q4](https://user-images.githubusercontent.com/98269318/189362065-151285c8-56c1-4e7c-97e2-59fbc13b61ff.png)
+
+**Ans**: Most item purchased item on the menu by all the customers:
+- Ramen was purchased **8** times
+- Curry was purchased **4** times
+- Sushi was purchased **3** times
+
+  
