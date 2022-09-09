@@ -246,3 +246,9 @@ weekday(c.order_time)as day_of_week,
 count(c.order_id) as total_pizza_ordered
 from pizza_runner.customer_order_temp as c
 group by day_of_week;
+
+#B. Runner and Customer exprience
+#1.How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+select extract(week from ru.registration_date) as registration_week,  count(runner_id) as runner_signed_up
+from pizza_runner.runners as ru
+group by registration_week;
