@@ -84,5 +84,28 @@ group by customer_id, product_name;
   
   **Ans**: Most popular items for each customer:
   - Customer A bought **3 ramen**.
-  - Customer B bought **2 cuury, 2 sushi, 2 ramen**
+  - Customer B bought **2 curry, 2 sushi, 2 ramen**
   - Customer C bought **3 ramen**
+
+**🦋6.Which item was purchased first by the customer after they became a member?**
+``` SQL
+ with member_customer as(
+ select members.join_date , sales.product_id, sales.customer_id, sales.order_date,
+ dense_rank() over(partition by sales.customer_id
+ order by sales.order_date ) as Ranks
+ from dannys_dinner.sales as sales
+ join dannys_dinner.members as members
+ on sales.customer_id= members.customer_id
+ where sales.order_date>= members.join_date)
+ 
+ select s2.customer_id, menu.product_name, s2.order_date
+ from member_customer s2
+ join dannys_dinner.menu as menu
+ on s2.product_id= menu.product_id
+ where Ranks=1;
+```
+![q6](https://user-images.githubusercontent.com/98269318/189366494-08f67137-9e56-480d-aa8e-a8ef6705fba9.png)
+
+**Ans**: First item purchased by the customers after they became a member:
+- Customer A bought **Sushi**
+- Customer B bought **Curry**
