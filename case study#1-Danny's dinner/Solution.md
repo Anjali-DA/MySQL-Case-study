@@ -257,18 +257,19 @@ from ranking_values;
 ```
 
 |customer_id|order_date|price|product_name|members|ranking|
-|----------:|---------:|----:|-----------:|------:|Null   |
-|A          |2021-01-10|12   |sushi       |N      |Null   |
-|A          |2021-01-10|12   |curry       |N      |1      |
-|A          |2021-01-10|12   |curry       |Y      |2      |
-|A          |2021-01-10|12   |ramen       |Y      |3      |
-|A          |2021-01-10|12   |ramen       |Y      |3      |
-|B          |2021-01-10|12   |curry       |N      |Null   |
-|B          |2021-01-10|12   |curry       |N      |Null   |
-|B          |2021-01-10|12   |sushi       |N      |Null   |
-|B          |2021-01-10|12   |sushi       |Y      |1      | 
-|B          |2021-01-10|12   |ramen       |Y      |2      |
-|B          |2021-01-10|12   |ramen       |Y      |3      |
-|C          |2021-01-10|12   |ramen       |N      |Null   |
-|C          |2021-01-10|12   |ramen       |N      |Null   |
-|C          |2021-01-10|12   |ramen       |N      |Null   |
+|----------:|---------:|----:|-----------:|------:|------:|
+|A          |2021-01-01|10   |sushi       |N      |Null   |
+|A          |2021-01-01|15   |curry       |N      |Null   |     
+|A          |2021-01-07|15   |curry       |Y      |1      |
+|A          |2021-01-10|12   |ramen       |Y      |2      |
+|A          |2021-01-11|12   |ramen       |Y      |3      |
+|A          |2021-01-11|12   |ramen       |Y      |3      |
+|B          |2021-01-01|15   |curry       |N      |Null   |
+|B          |2021-01-02|15   |curry       |N      |Null   |
+|B          |2021-01-04|10   |sushi       |N      |Null   |
+|B          |2021-01-11|10   |sushi       |Y      |1      | 
+|B          |2021-01-16|12   |ramen       |Y      |2      |
+|B          |2021-01-01|12   |ramen       |Y      |3      |
+|C          |2021-01-01|12   |ramen       |N      |Null   |
+|C          |2021-01-01|12   |ramen       |N      |Null   |
+|C          |2021-01-07|12   |ramen       |N      |Null   |
