@@ -65,4 +65,24 @@ group by customer_id, product_name;
 - Curry was purchased **4** times
 - Sushi was purchased **3** times
 
+  **🦋5. Which item was the most popular for each customer?**
+  ``` SQL
+  with popular_food as(
+  select count(menu.product_id) as order_count, sales.customer_id, menu.product_name,
+  dense_rank() over(partition by sales.customer_id
+  order by count(sales.customer_id) desc) as Ranks
+  from dannys_dinner.menu as menu
+  join dannys_dinner.sales as sales
+  on sales.product_id= menu.product_id
+  group by sales.customer_id,menu.product_name)
+
+  select customer_id, product_name, order_count
+  from popular_food
+  where ranks=1;
+  ```
+  ![q5](https://user-images.githubusercontent.com/98269318/189363855-f978c973-0da1-4ad1-b2ef-07f035e7498e.png)
   
+  **Ans**: Most popular items for each customer:
+  - Customer A bought **3 ramen**.
+  - Customer B bought **2 cuury, 2 sushi, 2 ramen**
+  - Customer C bought **3 ramen**
