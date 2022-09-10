@@ -48,3 +48,15 @@ from pizza_runner.customer_order_temp;
 **Ans**: Type of pizzas delivered:
 - There are **9** type of pizzas for non-veg lovers
 - There are **3** type of pizzas for vegeterian
+
+**5.How many Vegetarian and Meatlovers were ordered by each customer?**
+ ``` SQL
+ select c.customer_id, p.pizza_name as type_of_pizza, count(p.pizza_id) as no_of_pizza
+  from pizza_runner.customer_order_temp as c
+  join pizza_runner.pizza_names as p
+  on c.pizza_id=p.pizza_id
+  group by c.customer_id, p.pizza_name
+  order by c.customer_id;
+```
+![d4](https://user-images.githubusercontent.com/98269318/189496796-c67d7877-244d-48df-baff-3bf0aeb69568.png)
+
