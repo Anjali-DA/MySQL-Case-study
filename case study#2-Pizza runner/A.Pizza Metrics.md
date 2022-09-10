@@ -49,7 +49,7 @@ from pizza_runner.customer_order_temp;
 - There are **9** type of pizzas for non-veg lovers
 - There are **3** type of pizzas for vegeterian
 
-**5.How many Vegetarian and Meatlovers were ordered by each customer?**
+**🍕5.How many Vegetarian and Meatlovers were ordered by each customer?**
  ``` SQL
  select c.customer_id, p.pizza_name as type_of_pizza, count(p.pizza_id) as no_of_pizza
   from pizza_runner.customer_order_temp as c
