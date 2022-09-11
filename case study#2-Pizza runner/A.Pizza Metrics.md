@@ -60,3 +60,50 @@ from pizza_runner.customer_order_temp;
 ```
 ![d4](https://user-images.githubusercontent.com/98269318/189496796-c67d7877-244d-48df-baff-3bf0aeb69568.png)
 
+**Ans**: 
+- Customer 101 ordered **2** meat lovers & **1** vegetarian pizza
+- Customer 102 ordered **3** meat lovers & **1** vegetarian pizza
+- Customer 103 ordered **3** meat lovers & **1** vegetarian pizza
+- Customer 104 ordered **2** meat lovers & **0** vegetarian pizza
+- Customer 105 ordered **0** meat lovers & **1** vegetarian pizza
+
+**🍕6.What was the maximum number of pizzas delivered in a single order?**
+``` SQL
+ select c.order_id, count(c.pizza_id) as no_of_pizza
+  from pizza_runner.customer_order_temp as c
+  join pizza_runner.runner_orders_temp as r
+  on c.order_id=r.order_id
+  where r.distance !=0
+  group by c.order_id;
+  ```
+  ![p6](https://user-images.githubusercontent.com/98269318/189516209-1811cfbc-3eb4-4512-8846-f0e803ca8630.png)
+  
+  **Ans**: Mximum number of pizzas deliverd in a single order:
+  - Order_id 1 deliverd **1** pizza
+  - Order_id 2 deliverd **1** pizza
+  - Order_id 3 deliverd **2** pizza
+  - Order_id 4 deliverd **3** pizza
+  - Order_id 5 deliverd **1** pizza
+  - Order_id 7 deliverd **1** pizza
+  - Order_id 8 deliverd **1** pizza
+  - Order_id 10 deliverd **2** pizza
+
+**🍕7.For each customer, how many delivered pizzas had at least 1 change and how many had no changes?**
+``` SQL
+select c.customer_id,
+ sum(
+ case when c.exclusions<> ' ' or c.extras<> ' ' then 1
+ else 0
+end) as  at_least_one_change,
+sum(case when c.exclusions=' ' or c.extras=' ' then 1
+else 0
+end) as no_change
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id 
+where distance !=0
+group by customer_id
+order by customer_id;
+```
+**Ans**: Delivered pizza that had at least 1 change and no change:
+- Customer 101
