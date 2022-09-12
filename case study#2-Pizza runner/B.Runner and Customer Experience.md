@@ -14,3 +14,10 @@ group by registration_week;
 - In week 1 & week 3, one runner signed up
 - In week 2, two runners signed up
 
+**⚡2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?**
+``` SQL
+select r.runner_id as each_runner, avg(extract(minute from r.pickup_time)) as avg_pickup_time
+from pizza_runner.runner_orders as r
+group by runner_id;
+```
+
