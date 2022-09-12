@@ -16,8 +16,53 @@ group by registration_week;
 
 **⚡2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?**
 ``` SQL
-select r.runner_id as each_runner, avg(extract(minute from r.pickup_time)) as avg_pickup_time
+select r.runner_id as each_runner, round(avg(extract(minute from r.pickup_time)),2) as avg_pickup_time
 from pizza_runner.runner_orders as r
 group by runner_id;
 ```
+![a2](https://user-images.githubusercontent.com/98269318/189721314-6d78df7c-49ef-4844-82b2-22f2afecbea9.png)
+
+**Ans**: Average time took bt each runner to arrive at the Pizza Runner HQ to pickup the order:
+- Runner 1 took **21.75** mins
+- Runner 2 took **32.67** mins
+- Runner 3 took **10.00** mins
+
+**⚡3.Is there any relationship between the number of pizzas and how long the order takes to prepare?**
+``` SQL
+with rel_pizza_time as(
+select count(c.order_id) as no_of_pizza, timediff(r.pickup_time,c.order_time) as prep_time,c.order_id,c.order_time,r.pickup_time
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id
+where r.distance!=0
+group by c.order_id)
+
+select no_of_pizza, prep_time
+from rel_pizza_time
+group by no_of_pizza;
+``` 
+![a3](https://user-images.githubusercontent.com/98269318/189722020-160377b3-db72-4a1e-9e13-33c2d364f3ec.png)
+
+**Ans**: Yes, there is relationship between the number of pizzas and how long the order takes to prepare.
+- It took **10:32 mins** for preparing 1 pizza
+- It took **21:14 mins** for preparing 2 pizzas
+- It took **29:17 mins** for preparing 3 pizzas
+
+**⚡4.What was the average distance travelled for each customer?**
+``` SQL
+select c.customer_id as customers, round(avg(r.distance),2) as average_distance
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id
+where distance !=0
+group by c.customer_id;
+```
+![a4](https://user-images.githubusercontent.com/98269318/189723816-ed38f2fc-b82c-40f2-88bb-9c4b3e738486.png)
+
+**Ans**: Average distance travelled by the runners for each customer:
+- For customer 101, avg distance travelled by the runners is **20Km** 
+- For customer 102, avg distance travelled by the runners is **14.75Km**
+- For customer 103, avg distance travelled by the runners is **23Km**
+- For customer 104, avg distance travelled by the runners is **10Km**
+- For cistomer 105, avg distance travelled by the runners is **25Km**
 
