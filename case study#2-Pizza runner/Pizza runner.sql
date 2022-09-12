@@ -254,7 +254,7 @@ from pizza_runner.runners as ru
 group by registration_week;
 
 #2.What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
-select r.runner_id as each_runner, avg(extract(minute from r.pickup_time)) as avg_pickup_time
+select r.runner_id as each_runner, round(avg(extract(minute from r.pickup_time)),2) as avg_pickup_time
 from pizza_runner.runner_orders as r
 group by runner_id;
 
@@ -272,7 +272,7 @@ from rel_pizza_time
 group by no_of_pizza;
 
 #4.What was the average distance travelled for each customer?
-select c.customer_id as customers, avg(r.distance) as average_distance
+select c.customer_id as customers, round(avg(r.distance),2) as average_distance
 from pizza_runner.customer_order_temp as c
 join pizza_runner.runner_orders_temp as r
 on c.order_id=r.order_id
