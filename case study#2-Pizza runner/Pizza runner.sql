@@ -257,3 +257,27 @@ group by registration_week;
 select r.runner_id as each_runner, avg(extract(minute from r.pickup_time)) as avg_pickup_time
 from pizza_runner.runner_orders as r
 group by runner_id;
+
+#3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+with rel_pizza_time as(
+select count(c.order_id) as no_of_pizza, timediff(r.pickup_time,c.order_time) as prep_time,c.order_id,c.order_time,r.pickup_time
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id
+where r.distance!=0
+group by c.order_id)
+
+select no_of_pizza, prep_time
+from rel_pizza_time
+group by no_of_pizza;
+
+#4.What was the average distance travelled for each customer?
+select c.customer_id as customers, avg(r.distance) as average_distance
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id
+where distance !=0
+group by c.customer_id;
+
+#5.What was the difference between the longest and shortest delivery times for all orders?
+
