@@ -280,4 +280,17 @@ where distance !=0
 group by c.customer_id;
 
 #5.What was the difference between the longest and shortest delivery times for all orders?
+select max(r.duration)-min(r.duration) as difference_duration
+from pizza_runner.runner_orders_temp as r
+where duration !=0;
 
+#6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
+select r.runner_id, r.order_id, round(avg(distance/(duration/60)),2) as average_speed
+from pizza_runner.runner_orders_temp as r
+where distance !=0
+group by r.order_id;
+
+#7. What is the successful delivery percentage for each runner?
+select r.runner_id, round(100*sum(case when distance is null then 0 else 1 end)/count(*),0) as success_percentage
+from pizza_runner.runner_orders_temp as r
+group by r.runner_id;
