@@ -66,3 +66,40 @@ group by c.customer_id;
 - For customer 104, avg distance travelled by the runners is **10Km**
 - For cistomer 105, avg distance travelled by the runners is **25Km**
 
+**⚡5.What was the difference between the longest and shortest delivery times for all orders?**
+``` SQL
+select max(r.duration)-min(r.duration) as difference_duration
+from pizza_runner.runner_orders_temp as r
+where duration !=0;
+```
+![a5](https://user-images.githubusercontent.com/98269318/189972232-09ad70b2-e5b2-43a8-a010-9173e57171ea.png)
+
+**Ans**: The difference between the longest and shortest delivery times for all orders is **30 minutes**
+
+**⚡6. What was the average speed for each runner for each delivery and do you notice any trend for these values?**
+``` SQL
+select r.runner_id, r.order_id, round(avg(distance/(duration/60)),2) as average_speed
+from pizza_runner.runner_orders_temp as r
+where distance !=0
+group by r.order_id;
+```
+![a6](https://user-images.githubusercontent.com/98269318/189973248-a48df61d-c5e5-4e15-b87f-d61fd160cbdb.png)
+
+**Ans**: The average speed for each runner for each delivery:
+- Runeer 1's average speed for each delivery **37.50, 44.44, 39.00 & 60.00 (Km/hr)**
+- Runeer 2's average speed for each delivery **34.00, 60.00, 92.00 (Km/hr)**
+- Runeer 3's average speed for each delivery **40.00 (Km/hr)**
+
+**⚡7. What is the successful delivery percentage for each runner?**
+``` SQL
+select r.runner_id, round(100*sum(case when distance is null then 0 else 1 end)/count(*),0) as success_percentage
+from pizza_runner.runner_orders_temp as r
+group by r.runner_id;
+```
+![a7](https://user-images.githubusercontent.com/98269318/189977847-db3f1b13-1403-43a7-aeb5-338668d8ff9c.png)
+
+ **Ans**: The successful delivery percentage for each runner:
+ - Runner 1 has **100%**.
+ - Runner 2 has **75%**.
+ - Runner 3 has **50%**.
+
