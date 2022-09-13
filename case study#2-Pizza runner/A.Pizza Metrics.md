@@ -106,4 +106,37 @@ group by customer_id
 order by customer_id;
 ```
 **Ans**: Delivered pizza that had at least 1 change and no change:
-- Customer 101
+- Customer 101 
+
+**🍕8.How many pizzas were delivered that had both exclusions and extras? **
+``` SQL
+select c.customer_id,
+ sum(
+ case when c.exclusions<> ' ' and c.extras<> ' ' then 1
+ else 0
+end) as  both_exclusions_extras
+from pizza_runner.customer_order_temp as c
+join pizza_runner.runner_orders_temp as r
+on c.order_id=r.order_id 
+where distance !=0
+group by customer_id
+order by customer_id;
+```
+
+**🍕9.What was the total volume of pizzas ordered for each hour of the day?**
+``` SQL
+select
+hour(order_time)as hour_of_day,
+count(c.order_id) as volume
+from pizza_runner.customer_order_temp as c
+group by hour_of_day;
+```
+
+**🍕10.What was the volume of orders for each day of the week?**
+``` SQL
+select 
+weekday(c.order_time)as day_of_week,
+count(c.order_id) as total_pizza_ordered
+from pizza_runner.customer_order_temp as c
+group by day_of_week;
+```
