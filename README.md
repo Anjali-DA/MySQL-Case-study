@@ -8,7 +8,9 @@
 - Got more confidence to solve more such type of SQL case studies.
 
 **Here are the solutions of case studies I performed** 
+- **Danny's Dinner**: [case1]([https://8weeksqlchallenge.com/case-study-1/](https://github.com/Anjali-DA/MySQL-Case-study/blob/main/case%20study%231-Danny's%20dinner/Solution.md)
+
+*Sources:*
 
 Case Study#1- [Danny's Dinner](https://8weeksqlchallenge.com/case-study-1/)
-
 Case Study#2- [Pizza Runner](https://8weeksqlchallenge.com/case-study-2/)
