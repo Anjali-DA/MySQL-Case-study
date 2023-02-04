@@ -1,7 +1,6 @@
-# SQL case studies
+# SQL case studies📜
 **Why go for solving these case studies?**
 - Soving these case studies will give you the slightly idea about the actual scenario of real case studies used in industries. With these different case studies, you will get to know more about the different queires while solving it.
-- 
 **What I learned after solving these case studies?** 
 
 - Got to know different SQL queries like Ranks, denser_rank
